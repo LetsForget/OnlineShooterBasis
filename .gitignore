@@ -3,3 +3,5 @@ Logs
 UserSettings
 Temp
 Assembly-CSharp.csproj
+GameBasis.sln
+*.csproj
