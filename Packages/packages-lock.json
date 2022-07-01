@@ -161,6 +161,12 @@
       },
       "url": "https://packages.unity.com"
     },
+    "com.voody.unileo": {
+      "version": "file:../Module/UniLeo",
+      "depth": 0,
+      "source": "local",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,

@@ -1,3 +1,6 @@
 [submodule "Module/LeoECS"]
 	path = Module/LeoECS
 	url = https://github.com/Leopotam/ecs.git
+[submodule "Module/UniLeo"]
+	path = Module/UniLeo
+	url = https://github.com/voody2506/UniLeo.git
