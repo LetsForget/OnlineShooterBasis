@@ -2,7 +2,7 @@
 
 namespace GameLogic
 {
-    public class LocalPlayerTagProvider : MonoProvider<LocalPlayerTag>
+    public class LocalPlayerTagProvider : MonoProvider<CharacterMovementComponent>
     {
         
     }
