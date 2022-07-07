@@ -5,6 +5,8 @@ using Voody.UniLeo;
 
 public class EcsProvider : MonoBehaviour
 {
+    [SerializeField] private bool debugEnabled;
+    
     private EcsWorld world;
     private EcsSystems systems;
     
@@ -16,7 +18,12 @@ public class EcsProvider : MonoBehaviour
         systems.ConvertScene();
         
         AddSystems();
-        AddDebugSystems();
+
+        if (debugEnabled)
+        {
+            AddDebugSystems();
+        }
+
         
         AddOneFrames();
         AddInjections();
@@ -40,7 +47,9 @@ public class EcsProvider : MonoBehaviour
 
     private void AddSystems()
     {
-        systems.Add(new InputSystem());
+        systems.Add(new InputSystem())
+            .Add(new MovementSystem())
+            .Add(new CharacterObserveSystem());
     }
 
     private void AddDebugSystems()

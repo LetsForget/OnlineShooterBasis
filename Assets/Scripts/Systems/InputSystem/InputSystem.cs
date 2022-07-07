@@ -19,6 +19,7 @@ namespace GameLogic
             foreach (var component in filter)
             {
                 ref var input = ref filter.Get1(component);
+                
                 input.moveDirection = CalculateMoveDirection();
                 input.lookDirection = CalculateLookDirection();
             }
@@ -46,7 +47,7 @@ namespace GameLogic
             {
                 xMove = 1;
             }
-
+            
             return new Vector2(xMove, yMove).normalized;
         }
 
@@ -55,11 +56,5 @@ namespace GameLogic
             x = Input.GetAxis("Mouse X"),
             y = Input.GetAxis("Mouse Y")
         };
-        
-        public struct InputComponent
-        {
-            public Vector2 moveDirection;
-            public Vector2 lookDirection;
-        }
     }
 }
