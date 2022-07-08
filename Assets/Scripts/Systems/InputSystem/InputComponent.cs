@@ -6,5 +6,6 @@ namespace GameLogic
     {
         public Vector2 moveDirection;
         public Vector2 lookDirection;
+        public bool spacePressed;
     }
 }

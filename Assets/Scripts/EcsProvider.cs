@@ -48,8 +48,8 @@ public class EcsProvider : MonoBehaviour
     private void AddSystems()
     {
         systems.Add(new InputSystem())
-            .Add(new MovementSystem())
-            .Add(new CharacterObserveSystem());
+               .Add(new CharacterObserveSystem())
+               .Add(new CharacterMovementSystem());
     }
 
     private void AddDebugSystems()

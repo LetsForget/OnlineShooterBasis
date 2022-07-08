@@ -412,10 +412,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    maxSpeed: 18
+    maxSpeed: 12
     acceleration: 100
     deceleration: 80
+    jumpForce: 5
     currentSpeed: {x: 0, y: 0, z: 0}
+    currentGravitySpeed: 0
 --- !u!114 &1285310001
 MonoBehaviour:
   m_ObjectHideFlags: 0

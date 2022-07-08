@@ -7,10 +7,11 @@ namespace GameLogic
     public struct CharacterMovementComponent
     {
         public float maxSpeed;
-
         public float acceleration;
         public float deceleration;
 
+        public float jumpForce;
+        
         [HideInInspector] public Vector3 currentSpeed;
         [HideInInspector] public float currentGravitySpeed;
     }

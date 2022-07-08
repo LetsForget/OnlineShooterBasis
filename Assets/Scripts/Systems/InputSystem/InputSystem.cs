@@ -22,6 +22,7 @@ namespace GameLogic
                 
                 input.moveDirection = CalculateMoveDirection();
                 input.lookDirection = CalculateLookDirection();
+                input.spacePressed = Input.GetKey(KeyCode.Space);
             }
         }
 

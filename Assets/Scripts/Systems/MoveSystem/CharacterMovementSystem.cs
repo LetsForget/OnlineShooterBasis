@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class MovementSystem : IEcsInitSystem, IEcsRunSystem
+    public class CharacterMovementSystem : IEcsInitSystem, IEcsRunSystem
     {
         private const float GRAVITY = 9.8f;
         
@@ -22,8 +22,11 @@ namespace GameLogic
         
         public void Run()
         {
-            ref var moveDir = ref inputEntity.Get<InputComponent>().moveDirection;
+            ref var inputComponent = ref inputEntity.Get<InputComponent>();
             
+            ref var moveDir = ref inputComponent.moveDirection;
+            ref var jump = ref inputComponent.spacePressed;
+                
             foreach (var filter in characterFilter)
             {
                 ref var charController = ref characterFilter.Get1(filter).CharacterController;
@@ -50,6 +53,10 @@ namespace GameLogic
                 if (charController.isGrounded)
                 {
                     movementComp.currentGravitySpeed = 0;
+                    if (jump)
+                    {
+                        movementComp.currentGravitySpeed += movementComp.jumpForce;
+                    }
                 }
                 else
                 {
