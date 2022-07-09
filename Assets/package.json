@@ -1,0 +1,10 @@
+{
+  "name": "com.MK.GameBasis",
+  "version": "1.0.0",
+  "displayName": "GameBasis",
+  "description": "GameBasis",
+  "unity": "2021.3.5",
+  "dependencies": {
+  },
+  "keywords": [ "Basis" ]
+}
