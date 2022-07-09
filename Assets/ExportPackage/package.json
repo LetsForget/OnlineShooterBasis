@@ -4,7 +4,5 @@
   "displayName": "GameBasis",
   "description": "GameBasis",
   "unity": "2021.3.5",
-  "dependencies": {
-  },
   "keywords": [ "Basis" ]
 }
