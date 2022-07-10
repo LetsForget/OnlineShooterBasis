@@ -6,7 +6,7 @@ namespace GameLogic
     {
         public static Message Create(ref CharacterMovementUpdate characterMovementUpdate)
         {
-            var msg = Message.Create(MessageSendMode.unreliable, MessagesTypes.CharacterMovement);
+            var msg = Message.Create(MessageSendMode.unreliable, (ushort)MessagesTypes.CharacterMovement);
 
             msg.AddVector2(characterMovementUpdate.inputComponent.moveDirection);
             msg.AddVector2(characterMovementUpdate.inputComponent.lookDirection);
