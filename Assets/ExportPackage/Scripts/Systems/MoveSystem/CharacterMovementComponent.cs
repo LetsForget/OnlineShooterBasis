@@ -6,6 +6,8 @@ namespace GameLogic
     [Serializable]
     public struct CharacterMovementComponent
     {
+        public CharacterController characterController;
+        
         public float maxSpeed;
         public float acceleration;
         public float deceleration;

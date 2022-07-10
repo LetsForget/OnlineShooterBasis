@@ -5,6 +5,8 @@ namespace GameLogic
 {
     public class InputSystem : IEcsInitSystem, IEcsRunSystem
     {
+        private const float SENSETIVITY = 1000f;
+        
         private readonly EcsWorld _world;
         private readonly EcsFilter<InputComponent> filter;
 
@@ -52,10 +54,10 @@ namespace GameLogic
             return new Vector2(xMove, yMove).normalized;
         }
 
-        private Vector2 CalculateLookDirection() => new Vector2()
+        private Vector2 CalculateLookDirection() => new()
         {
-            x = Input.GetAxis("Mouse X"),
-            y = Input.GetAxis("Mouse Y")
+            x = Input.GetAxis("Mouse X") * SENSETIVITY * Time.deltaTime,
+            y = Input.GetAxis("Mouse Y") * SENSETIVITY * Time.deltaTime
         };
     }
 }

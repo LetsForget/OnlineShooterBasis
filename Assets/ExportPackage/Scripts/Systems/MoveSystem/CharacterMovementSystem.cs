@@ -3,34 +3,23 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class CharacterMovementSystem : IEcsInitSystem, IEcsRunSystem
+    public class CharacterMovementSystem : IEcsRunSystem
     {
         private const float GRAVITY = 9.8f;
-        
-        private readonly EcsFilter<InputComponent> input;
-        private readonly EcsFilter<CharacterControllerComponent, CharacterMovementComponent> characterFilter;
 
-        private EcsEntity inputEntity;
-        
-        public void Init()
-        {
-            foreach (var filter in input)
-            {
-                inputEntity = input.GetEntity(filter);
-            }
-        }
+        private readonly EcsFilter<CharacterMovementComponent, CharacterMovementUpdate> characterFilter;
         
         public void Run()
         {
-            ref var inputComponent = ref inputEntity.Get<InputComponent>();
-            
-            ref var moveDir = ref inputComponent.moveDirection;
-            ref var jump = ref inputComponent.spacePressed;
-                
             foreach (var filter in characterFilter)
             {
-                ref var charController = ref characterFilter.Get1(filter).CharacterController;
-                ref var movementComp = ref characterFilter.Get2(filter);
+                ref var movementComp = ref characterFilter.Get1(filter);
+                ref var charController = ref movementComp.characterController;
+
+                ref var movementUpdate = ref characterFilter.Get2(filter);
+
+                ref var moveDir = ref movementUpdate.inputComponent.moveDirection;
+                ref var jump = ref movementUpdate.inputComponent.spacePressed;
                 
                 if (moveDir.magnitude == 0)
                 {
@@ -47,7 +36,6 @@ namespace GameLogic
                     {
                         movementComp.currentSpeed = movementComp.currentSpeed.normalized * movementComp.maxSpeed;
                     }
-                    
                 }
 
                 if (charController.isGrounded)

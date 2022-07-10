@@ -9,6 +9,6 @@ namespace GameLogic
         public Transform cameraTransform;
         public Transform bodyTransform;
         
-        public float sensitivity;
+        [HideInInspector] public float xRotation;
     }
 }
