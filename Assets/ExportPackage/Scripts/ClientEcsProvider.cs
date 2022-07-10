@@ -21,6 +21,7 @@ namespace GameLogic
         {
             base.AddSystems();
 
+            systems.Add(new UpdateSendSystem());
             systems.Add(new NetworkSendSystem());
         }
     }
