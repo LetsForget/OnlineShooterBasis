@@ -7,6 +7,7 @@ namespace GameLogic
     public class BaseEcsProvider : MonoBehaviour
     {
         [SerializeField] private bool debugEnabled;
+        [SerializeField] private bool initOnStart = false;
         
         private EcsWorld world;
         protected EcsSystems systems;
@@ -28,8 +29,11 @@ namespace GameLogic
             
             AddOneFrames();
             AddInjections();
-            
-            systems.Init();
+
+            if (initOnStart)
+            {
+                systems.Init();
+            }
         }
     
         private void Update()
