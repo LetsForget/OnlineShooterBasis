@@ -7,8 +7,20 @@ namespace GameLogic
     {
         public Client Client
         {
-            set => systems.Inject(value);
+            set
+            {
+                if (inited)
+                {
+                    return;
+                }
+
+                inited = true;
+                systems.Inject(value);
+                systems.Init();
+            } 
         }
+
+        private bool inited = false;
         
         protected override void AddOneFrames()
         {
