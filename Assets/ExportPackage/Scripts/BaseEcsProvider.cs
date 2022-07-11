@@ -14,7 +14,7 @@ namespace GameLogic
 
         protected bool inited = false;
         
-        private EcsWorld world;
+        protected EcsWorld world;
         protected EcsSystems systems;
         
         private void Awake()
