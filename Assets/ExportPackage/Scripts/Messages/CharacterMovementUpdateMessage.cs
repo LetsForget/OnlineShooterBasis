@@ -32,7 +32,8 @@ namespace GameLogic
                 },
                 position = msg.GetVector3(),
                 rotation = msg.GetVector3(),
-                headRotation = msg.GetVector3()
+                headRotation = msg.GetVector3(),
+                clientId = msg.GetUShort()
             };
         }
     }
