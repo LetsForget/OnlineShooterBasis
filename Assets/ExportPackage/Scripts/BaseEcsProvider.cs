@@ -1,3 +1,4 @@
+using System;
 using Leopotam.Ecs;
 using UnityEngine;
 using Voody.UniLeo;
@@ -9,6 +10,8 @@ namespace GameLogic
         [SerializeField] private bool debugEnabled;
         [SerializeField] private bool initOnStart = false;
         
+        [SerializeField] private SpawnDataConfig spawnDataConfig;
+            
         private EcsWorld world;
         protected EcsSystems systems;
         
@@ -53,8 +56,9 @@ namespace GameLogic
         protected virtual void AddSystems()
         {
             systems.Add(new InputSystem())
-                   .Add(new CharacterObserveSystem())
-                   .Add(new CharacterMovementSystem());
+                .Add(new CharacterObserveSystem())
+                .Add(new CharacterMovementSystem())
+                .Add(new SpawnSystem());
         }
     
         protected virtual void AddDebugSystems()
@@ -64,12 +68,12 @@ namespace GameLogic
         
         protected virtual void AddOneFrames()
         {
-            
+            systems.OneFrame<SpawnComponent>();
         }
     
         protected virtual void AddInjections()
         {
-            
+            systems.Inject(spawnDataConfig);
         }
     }
 }
