@@ -21,8 +21,8 @@ namespace GameLogic
         public void Spawn(ushort clientId, Vector3 pos, int playerClientId = -1)
         {
             var prefabToSpawn = playerClientId == clientId
-                ? spawnDataConfig.enemyPlayerPrefab
-                : spawnDataConfig.localPlayerPrefab;
+                ? spawnDataConfig.localPlayerPrefab
+                : spawnDataConfig.enemyPlayerPrefab;
                 
             var player = GameObject.Instantiate(prefabToSpawn, pos, Quaternion.identity);
             players.Add(clientId, player);
