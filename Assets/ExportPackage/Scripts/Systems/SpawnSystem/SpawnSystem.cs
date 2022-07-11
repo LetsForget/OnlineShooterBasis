@@ -6,7 +6,7 @@ namespace GameLogic
 {
     public class SpawnSystem : IEcsInitSystem, IEcsRunSystem
     {
-        public static int PlayerClientID;
+        public static int PlayerClientID = -1;
         
         private readonly EcsFilter<SpawnComponent> spawnFilter = null;
         private SpawnDataConfig spawnDataConfig = null;
