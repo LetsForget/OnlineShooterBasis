@@ -12,7 +12,7 @@ namespace GameLogic
         
         [SerializeField] private SpawnDataConfig spawnDataConfig;
 
-        private bool inited = false;
+        protected bool inited = false;
         
         private EcsWorld world;
         protected EcsSystems systems;
