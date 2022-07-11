@@ -16,7 +16,9 @@ namespace GameLogic
         
         protected EcsWorld world;
         protected EcsSystems systems;
-        
+
+        protected SpawnSystem SpawnSystem { get; set; }
+
         private void Awake()
         {
             world = new EcsWorld();
@@ -64,7 +66,7 @@ namespace GameLogic
             systems.Add(new InputSystem())
                 .Add(new CharacterObserveSystem())
                 .Add(new CharacterMovementSystem())
-                .Add(new SpawnSystem());
+                .Add(SpawnSystem = new SpawnSystem());
         }
     
         protected virtual void AddDebugSystems()

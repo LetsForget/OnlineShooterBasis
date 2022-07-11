@@ -4,10 +4,8 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class SpawnSystem : IEcsInitSystem, IEcsRunSystem
+    public class SpawnSystem : IEcsInitSystem
     {
-        public static int PlayerClientID = -1;
-        
         private readonly EcsFilter<SpawnComponent> spawnFilter = null;
         private readonly EcsFilter<DestroyComponent> destroyFilter = null;
         
@@ -20,31 +18,22 @@ namespace GameLogic
             players = new Dictionary<ushort, GameObject>();
         }
         
-        public void Run()
+        public void Spawn(ushort clientId, Vector3 pos, int playerClientId = -1)
         {
-            foreach (var filter in spawnFilter)
-            {
-                ref var spawnComponent = ref spawnFilter.Get1(filter);
+            var prefabToSpawn = playerClientId == clientId
+                ? spawnDataConfig.enemyPlayerPrefab
+                : spawnDataConfig.localPlayerPrefab;
                 
-                ref var pos = ref spawnComponent.position;
-                ref var clientId = ref spawnComponent.clientId;
-
-                var prefabToSpawn = PlayerClientID == clientId
-                    ? spawnDataConfig.enemyPlayerPrefab
-                    : spawnDataConfig.localPlayerPrefab;
-                
-                var player = GameObject.Instantiate(prefabToSpawn, pos, Quaternion.identity);
-                players.Add(clientId, player);
-            }
-
-            foreach (var destroy in destroyFilter)
+            var player = GameObject.Instantiate(prefabToSpawn, pos, Quaternion.identity);
+            players.Add(clientId, player);
+        }
+        
+        public void Destroy(ushort clientId)
+        {
+            if (players.TryGetValue(clientId, out var player))
             {
-                ref var toDestroyId = ref destroyFilter.Get1(destroy).clientId;
-                if (players.TryGetValue(toDestroyId, out var player))
-                {
-                    players.Remove(toDestroyId);
-                    GameObject.Destroy(player);
-                }
+                players.Remove(clientId);
+                GameObject.Destroy(player);
             }
         }
     }
