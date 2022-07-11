@@ -18,5 +18,21 @@ namespace GameLogic
             
             return msg;
         }
+
+        public static CharacterMovementUpdate Convert(Message msg)
+        {
+            return new CharacterMovementUpdate()
+            {
+                inputComponent = new InputComponent()
+                {
+                    moveDirection = msg.GetVector2(),
+                    lookDirection = msg.GetVector2(),
+                    spacePressed = msg.GetBool()
+                },
+                position = msg.GetVector3(),
+                rotation = msg.GetVector3(),
+                headRotation = msg.GetVector3()
+            };
+        }
     }
 }
