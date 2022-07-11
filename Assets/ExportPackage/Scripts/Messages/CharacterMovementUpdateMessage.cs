@@ -2,9 +2,9 @@
 
 namespace GameLogic
 {
-    public static class CharacterMovementUpdateMessage 
+    public static class CharacterMovementUpdateMessage
     {
-        public static Message Create(ref CharacterMovementUpdate characterMovementUpdate)
+        public static Message Create(ref CharacterMovementUpdate characterMovementUpdate, ushort clientId)
         {
             var msg = Message.Create(MessageSendMode.unreliable, (ushort)MessagesTypes.CharacterMovement);
 
@@ -15,6 +15,7 @@ namespace GameLogic
             msg.AddVector3(characterMovementUpdate.position);
             msg.AddVector3(characterMovementUpdate.rotation);
             msg.AddVector3(characterMovementUpdate.headRotation);
+            msg.AddUShort(clientId);
             
             return msg;
         }

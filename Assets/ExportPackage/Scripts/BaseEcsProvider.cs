@@ -18,6 +18,7 @@ namespace GameLogic
         protected EcsSystems systems;
 
         protected SpawnSystem SpawnSystem { get; set; }
+        protected UpdateReceiveSystem UpdateReceiveSystem { get; set; }
 
         private void Awake()
         {
@@ -60,15 +61,17 @@ namespace GameLogic
             systems.Destroy();
             systems = null;
         }
-    
+
         protected virtual void AddSystems()
         {
             systems.Add(new InputSystem())
+                .Add(UpdateReceiveSystem = new UpdateReceiveSystem())
                 .Add(new CharacterObserveSystem())
                 .Add(new CharacterMovementSystem())
-                .Add(SpawnSystem = new SpawnSystem());
+                .Add(SpawnSystem = new SpawnSystem())
+                .Add(new ClientIdSetterSystem());
         }
-    
+
         protected virtual void AddDebugSystems()
         {
             systems.Add(new DebugInputSystem());
@@ -77,12 +80,14 @@ namespace GameLogic
         protected virtual void AddOneFrames()
         {
             systems.OneFrame<SpawnComponent>()
-                .OneFrame<DestroyComponent>();
+                .OneFrame<DestroyComponent>()
+                .OneFrame<CharacterMovementUpdate>();
         }
     
         protected virtual void AddInjections()
         {
-            systems.Inject(spawnDataConfig);
+            systems.Inject(spawnDataConfig)
+                .Inject(new PlayersList());
         }
     }
 }

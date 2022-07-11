@@ -1,38 +1,32 @@
-﻿using System.Collections.Generic;
-using Leopotam.Ecs;
+﻿using Leopotam.Ecs;
 using UnityEngine;
 
 namespace GameLogic
 {
-    public class SpawnSystem : IEcsInitSystem
+    public class SpawnSystem : IEcsSystem
     {
         private readonly EcsFilter<SpawnComponent> spawnFilter = null;
         private readonly EcsFilter<DestroyComponent> destroyFilter = null;
         
         private SpawnDataConfig spawnDataConfig = null;
-        
-        private Dictionary<ushort, GameObject> players;
-        
-        public void Init()
-        {
-            players = new Dictionary<ushort, GameObject>();
-        }
-        
+        private PlayersList playersList = null;
+
         public void Spawn(ushort clientId, Vector3 pos, int playerClientId = -1)
         {
             var prefabToSpawn = playerClientId == clientId
                 ? spawnDataConfig.localPlayerPrefab
                 : spawnDataConfig.enemyPlayerPrefab;
-                
+
             var player = GameObject.Instantiate(prefabToSpawn, pos, Quaternion.identity);
-            players.Add(clientId, player);
+
+            playersList.list.Add(clientId, player);
         }
-        
+
         public void Destroy(ushort clientId)
         {
-            if (players.TryGetValue(clientId, out var player))
+            if (playersList.list.TryGetValue(clientId, out var player))
             {
-                players.Remove(clientId);
+                playersList.list.Remove(clientId);
                 GameObject.Destroy(player);
             }
         }
