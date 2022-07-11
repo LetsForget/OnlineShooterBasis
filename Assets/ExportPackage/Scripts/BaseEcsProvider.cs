@@ -11,7 +11,9 @@ namespace GameLogic
         [SerializeField] private bool initOnStart = false;
         
         [SerializeField] private SpawnDataConfig spawnDataConfig;
-            
+
+        private bool inited = false;
+        
         private EcsWorld world;
         protected EcsSystems systems;
         
@@ -41,7 +43,10 @@ namespace GameLogic
     
         private void Update()
         {
-            systems.Run();
+            if (inited)
+            {
+                systems.Run();
+            }
         }
     
         private void OnDestroy()
