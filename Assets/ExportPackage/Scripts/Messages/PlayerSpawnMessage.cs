@@ -6,7 +6,7 @@ namespace GameLogic
     {
         public static Message Create(ref ushort clientId)
         {
-            var msg = Message.Create(MessageSendMode.unreliable, (ushort)MessagesTypes.Spawn);
+            var msg = Message.Create(MessageSendMode.reliable, (ushort)MessagesTypes.Spawn);
 
             msg.AddUInt(clientId);
             

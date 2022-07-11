@@ -6,7 +6,7 @@ namespace GameLogic
     {
         public static Message Create(ref ushort clientId)
         {
-            var msg = Message.Create(MessageSendMode.unreliable, (ushort)MessagesTypes.Destroy);
+            var msg = Message.Create(MessageSendMode.reliable, (ushort)MessagesTypes.Destroy);
 
             msg.AddUShort(clientId);
             
