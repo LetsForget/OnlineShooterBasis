@@ -9,6 +9,8 @@ namespace GameLogic
         public static int PlayerClientID = -1;
         
         private readonly EcsFilter<SpawnComponent> spawnFilter = null;
+        private readonly EcsFilter<DestroyComponent> destroyFilter = null;
+        
         private SpawnDataConfig spawnDataConfig = null;
         
         private Dictionary<ushort, GameObject> players;
@@ -33,6 +35,16 @@ namespace GameLogic
                 
                 var player = GameObject.Instantiate(prefabToSpawn, pos, Quaternion.identity);
                 players.Add(clientId, player);
+            }
+
+            foreach (var destroy in destroyFilter)
+            {
+                ref var toDestroyId = ref destroyFilter.Get1(destroy).clientId;
+                if (players.TryGetValue(toDestroyId, out var player))
+                {
+                    players.Remove(toDestroyId);
+                    GameObject.Destroy(player);
+                }
             }
         }
     }

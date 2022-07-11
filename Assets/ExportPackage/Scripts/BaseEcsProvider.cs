@@ -74,7 +74,8 @@ namespace GameLogic
         
         protected virtual void AddOneFrames()
         {
-            systems.OneFrame<SpawnComponent>();
+            systems.OneFrame<SpawnComponent>()
+                .OneFrame<DestroyComponent>();
         }
     
         protected virtual void AddInjections()
