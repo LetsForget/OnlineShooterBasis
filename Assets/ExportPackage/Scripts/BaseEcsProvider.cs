@@ -17,7 +17,7 @@ namespace GameLogic
         private EcsWorld world;
         protected EcsSystems systems;
         
-        private void Start()
+        private void Awake()
         {
             world = new EcsWorld();
             systems = new EcsSystems(world);
@@ -38,6 +38,7 @@ namespace GameLogic
             if (initOnStart)
             {
                 systems.Init();
+                inited = true;
             }
         }
     
