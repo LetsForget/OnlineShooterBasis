@@ -34,9 +34,9 @@ namespace GameLogic
             }
         }
 
-        public void AddUpdate(PlayerInputUpdate update)
+        public void AddUpdate(Update update)
         {
-            _world.NewEntity().Get<PlayerInputUpdate>() = update;
+            _world.NewEntity().Get<Update>() = update;
         }
     }
 }
