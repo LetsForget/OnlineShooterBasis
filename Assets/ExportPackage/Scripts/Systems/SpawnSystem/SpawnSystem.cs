@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class SpawnSystem : IEcsSystem
+    public class SpawnSystem<PlayerComponent> : IEcsSystem where PlayerComponent : struct, IPlayerComponent
     {
-        private readonly EcsFilter<SpawnComponent> spawnFilter = null;
-        private readonly EcsFilter<DestroyComponent> destroyFilter = null;
+        private readonly EcsWorld world = null;
+        private readonly EcsFilter<PlayerComponent> players = null;
         
         private SpawnDataConfig spawnDataConfig = null;
         private PlayersList playersList = null;
@@ -34,6 +34,16 @@ namespace GameLogic
             {
                 playersList.list.Remove(clientId);
                 GameObject.Destroy(player);
+            }
+
+            foreach (var filter in players)
+            {
+                ref var playerComponent = ref players.Get1(filter);
+                if (playerComponent.ClientId == clientId)
+                {
+                    players.GetEntity(filter).Destroy();
+                    break;
+                }
             }
         }
     }

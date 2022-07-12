@@ -3,9 +3,9 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class CharacterObserveSystem : IEcsRunSystem
+    public class PlayerObserveSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<CharacterObserveComponent> cameras = null;
+        private readonly EcsFilter<PlayerObserveComponent> cameras = null;
         private readonly EcsFilter<InputComponent> input = null;
         
         public void Run()

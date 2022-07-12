@@ -1,6 +1,6 @@
 ﻿namespace GameLogic
 {
-    public struct PlayerInputUpdate : IPlayerUpdate
+    public struct ServerMovementUpdate : IPlayerUpdate
     {
         public InputComponent inputComponent;
         public ushort ClientId { get; set; }

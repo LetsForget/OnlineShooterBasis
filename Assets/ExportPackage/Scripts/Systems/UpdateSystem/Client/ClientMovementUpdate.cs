@@ -2,7 +2,7 @@
 
 namespace GameLogic
 {
-    public struct PlayerPositionUpdate : IPlayerUpdate
+    public struct ClientMovementUpdate : IPlayerUpdate
     {
         public Vector3 position;
         public ushort ClientId { get; set; }

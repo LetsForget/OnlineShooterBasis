@@ -4,7 +4,7 @@ using UnityEngine;
 namespace GameLogic
 {
     [Serializable]
-    public struct PlayerMovementComponent : IPlayerComponent
+    public struct ServerPlayerComponent : IPlayerComponent
     {
         public CharacterController characterController;
         

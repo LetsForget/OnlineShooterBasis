@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class PlayerPositionUpdateMessage
+    public class ClientMovementUpdateMessage
     {
         public static Message Create(Vector3 position, ushort clientId)
         {
@@ -15,9 +15,9 @@ namespace GameLogic
             return msg;
         }
 
-        public static PlayerPositionUpdate Convert(Message msg)
+        public static ClientMovementUpdate Convert(Message msg)
         {
-            return new PlayerPositionUpdate()
+            return new ClientMovementUpdate()
             {
                 position = msg.GetVector3(),
                 ClientId = msg.GetUShort()

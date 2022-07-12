@@ -3,20 +3,20 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class PlayerMovementSystem : IEcsRunSystem
+    public class ServerMovementSystem : IEcsRunSystem
     {
         private const float GRAVITY = 9.8f;
 
-        private readonly EcsFilter<PlayerMovementComponent> characterFilter = null;
+        private readonly EcsFilter<ServerPlayerComponent> players = null;
         
         public void Run()
         {
-            foreach (var filter in characterFilter)
+            foreach (var playerFilter in players)
             {
-                ref var movementComp = ref characterFilter.Get1(filter);
+                ref var movementComp = ref players.Get1(playerFilter);
                 ref var charController = ref movementComp.characterController;
 
-                ref var movementUpdate = ref characterFilter.GetEntity(filter).Get<PlayerInputUpdate>();
+                ref var movementUpdate = ref players.GetEntity(playerFilter).Get<ServerMovementUpdate>();
 
                 ref var moveDir = ref movementUpdate.inputComponent.moveDirection;
                 ref var jump = ref movementUpdate.inputComponent.spacePressed;

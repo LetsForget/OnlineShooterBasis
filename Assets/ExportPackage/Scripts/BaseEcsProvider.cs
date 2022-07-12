@@ -16,8 +16,6 @@ namespace GameLogic
         protected EcsWorld world;
         protected EcsSystems systems;
 
-        protected SpawnSystem SpawnSystem { get; set; }
-
         private void Awake()
         {
             world = new EcsWorld();
@@ -62,7 +60,7 @@ namespace GameLogic
 
         protected virtual void AddSystems()
         {
-            systems.Add(SpawnSystem = new SpawnSystem());
+
         }
 
         protected virtual void AddDebugSystems()
@@ -72,8 +70,7 @@ namespace GameLogic
         
         protected virtual void AddOneFrames()
         {
-            systems.OneFrame<SpawnComponent>()
-                .OneFrame<DestroyComponent>();
+
         }
     
         protected virtual void AddInjections()

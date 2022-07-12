@@ -22,10 +22,10 @@ namespace GameLogic
                 var inputComponent = input.Get1(inputFilter);
                 var playerEntity =  world.NewEntity();
                     
-                ref var playerInputUpdate = ref playerEntity.Get<PlayerInputUpdate>();
+                ref var playerInputUpdate = ref playerEntity.Get<ServerMovementUpdate>();
                 playerInputUpdate.inputComponent = inputComponent;
                     
-                var msg = PlayerInputUpdateMessage.Create(ref playerInputUpdate, client.Id);
+                var msg = ServerMovementUpdateMessage.Create(ref playerInputUpdate, client.Id);
                 client.Send(msg);
             }
         }

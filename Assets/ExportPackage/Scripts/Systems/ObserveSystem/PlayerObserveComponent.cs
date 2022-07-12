@@ -4,7 +4,7 @@ using UnityEngine;
 namespace GameLogic
 {
     [Serializable]
-    public struct CharacterObserveComponent
+    public struct PlayerObserveComponent
     {
         public Transform cameraTransform;
         public Transform bodyTransform;

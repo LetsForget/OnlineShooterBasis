@@ -2,9 +2,9 @@
 
 namespace GameLogic
 {
-    public class PlayerUpdatePositionApplySystem : IEcsRunSystem
+    public class ClientMovementSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ClientPlayerComponent, PlayerPositionUpdate> players = null;
+        private readonly EcsFilter<ClientPlayerComponent, ClientMovementUpdate> players = null;
 
         public void Run()
         {

@@ -17,7 +17,7 @@ namespace GameLogic
             
             foreach (var player in playersList.list)
             {
-                var message = PlayerPositionUpdateMessage.Create(player.Value.transform.position, player.Key);
+                var message = ClientMovementUpdateMessage.Create(player.Value.transform.position, player.Key);
                 server.SendToAll(message);
             }
         }
