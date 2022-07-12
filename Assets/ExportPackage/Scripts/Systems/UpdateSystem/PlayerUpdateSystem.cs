@@ -8,16 +8,16 @@ namespace GameLogic
     {
         private readonly EcsWorld _world = null;
 
-        private readonly EcsFilter<Update> playersInputUpdates;
+        private readonly EcsFilter<Update> updates;
         private readonly EcsFilter<PlayerComponent> players;
 
         private PlayersList playersList = null;
 
         public void Run()
         {
-            foreach (var filterUpdate in playersInputUpdates)
+            foreach (var filterUpdate in updates)
             {
-                ref var update = ref playersInputUpdates.Get1(filterUpdate);
+                ref var update = ref updates.Get1(filterUpdate);
 
                 foreach (var playerFilter in players)
                 {
