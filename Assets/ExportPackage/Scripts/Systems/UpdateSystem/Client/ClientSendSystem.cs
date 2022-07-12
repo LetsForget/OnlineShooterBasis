@@ -3,7 +3,7 @@ using RiptideNetworking;
 
 namespace GameLogic
 {
-    public class UpdateSendSystem : IEcsRunSystem
+    public class ClientSendSystem : IEcsRunSystem
     {
         private readonly EcsWorld world = null;
         private readonly EcsFilter<InputComponent> input = null;

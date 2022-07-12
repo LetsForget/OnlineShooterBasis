@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class ServerPositionUpdateMessage
+    public class PlayerPositionUpdateMessage
     {
         public static Message Create(Vector3 position, ushort clientId)
         {
-            var msg = Message.Create(MessageSendMode.unreliable, (ushort)MessagesTypes.PlayerInputComponent);
+            var msg = Message.Create(MessageSendMode.unreliable, (ushort)MessagesTypes.PlayerPositionUpdate);
 
             msg.AddVector3(position);
             msg.AddUShort(clientId);

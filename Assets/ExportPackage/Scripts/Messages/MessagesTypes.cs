@@ -2,8 +2,9 @@
 {
     public enum MessagesTypes
     {
-        PlayerInputComponent = 1,
+        PlayerInputUpdate = 1,
         Spawn = 2,
-        Destroy = 3
+        Destroy = 3,
+        PlayerPositionUpdate = 4
     }
 }
