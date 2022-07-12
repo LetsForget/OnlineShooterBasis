@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   localPlayerPrefab: {fileID: 8439370251216318394, guid: d844ac7274bd0084cad6b5e3c1fc7986, type: 3}
   enemyPlayerPrefab: {fileID: 8439370251216318394, guid: 72c557811b4902c4bb203113d5b30a1b, type: 3}
+  serverPlayerPrefab: {fileID: 8439370251216318394, guid: 56e4c43ebda67f44da1a5600a564d429, type: 3}
