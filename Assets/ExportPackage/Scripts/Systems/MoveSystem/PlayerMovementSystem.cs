@@ -3,11 +3,11 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class CharacterMovementSystem : IEcsRunSystem
+    public class PlayerMovementSystem : IEcsRunSystem
     {
         private const float GRAVITY = 9.8f;
 
-        private readonly EcsFilter<CharacterMovementComponent> characterFilter;
+        private readonly EcsFilter<PlayerMovementComponent> characterFilter = null;
         
         public void Run()
         {

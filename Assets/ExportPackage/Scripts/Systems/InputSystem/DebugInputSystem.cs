@@ -5,7 +5,7 @@ namespace GameLogic
 {
     public class DebugInputSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<InputComponent> filter;
+        private readonly EcsFilter<InputComponent> filter = null;
         
         public void Run()
         {

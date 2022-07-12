@@ -3,9 +3,10 @@ using Leopotam.Ecs;
 
 namespace GameLogic
 {
-    public class ClientIdSetterSystem : IEcsRunSystem
+    public class ClientIdSetterSystem<PlayerComponent> : IEcsRunSystem 
+        where PlayerComponent : struct, IPlayerComponent
     {
-        private readonly EcsFilter<CharacterMovementComponent> players = null;
+        private readonly EcsFilter<PlayerComponent> players = null;
         private PlayersList playersList = null;
 
         public void Run()
@@ -14,16 +15,16 @@ namespace GameLogic
             {
                 ref var player = ref players.Get1(playerFilter);
 
-                if (!player.clientIdSet)
+                if (!player.ClientIdSet)
                 {
-                    var gameObject = player.characterController.gameObject;
+                    var gameObject = player.PlayerGameobject;
 
                     var needCouple = playersList.list.FirstOrDefault(p => p.Value == gameObject);
 
-                    if (needCouple.Key != null)
+                    if (needCouple.Value != null)
                     {
-                        player.clientId = needCouple.Key;
-                        player.clientIdSet = true;
+                        player.ClientId = needCouple.Key;
+                        player.ClientIdSet = true;
                     }
                 }
             }

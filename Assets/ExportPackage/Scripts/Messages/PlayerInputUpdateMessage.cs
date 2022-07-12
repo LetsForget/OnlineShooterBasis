@@ -6,7 +6,7 @@ namespace GameLogic
     {
         public static Message Create(ref PlayerInputUpdate playerInputUpdate, ushort clientId)
         {
-            var msg = Message.Create(MessageSendMode.unreliable, (ushort)MessagesTypes.CharacterMovement);
+            var msg = Message.Create(MessageSendMode.unreliable, (ushort)MessagesTypes.PlayerInputComponent);
 
             msg.AddVector2(playerInputUpdate.inputComponent.moveDirection);
             msg.AddVector2(playerInputUpdate.inputComponent.lookDirection);
@@ -28,7 +28,7 @@ namespace GameLogic
                     spacePressed = msg.GetBool()
                 },
 
-                clientId = msg.GetUShort()
+                ClientId = msg.GetUShort()
             };
         }
     }

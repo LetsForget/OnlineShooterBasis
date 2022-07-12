@@ -2,31 +2,33 @@
 
 namespace GameLogic
 {
-    public class UpdateReceiveSystem : IEcsRunSystem
+    public class PlayerUpdateSystem<Update, PlayerComponent> : IEcsRunSystem
+        where Update : struct, IPlayerUpdate
+        where PlayerComponent : struct, IPlayerComponent
     {
         private readonly EcsWorld _world = null;
-        
-        private readonly EcsFilter<PlayerInputUpdate> charactersUpdate;
-        private readonly EcsFilter<CharacterMovementComponent> players;
-        
+
+        private readonly EcsFilter<Update> playersInputUpdates;
+        private readonly EcsFilter<PlayerComponent> players;
+
         private PlayersList playersList = null;
-        
+
         public void Run()
         {
-            foreach (var filterUpdate in charactersUpdate)
+            foreach (var filterUpdate in playersInputUpdates)
             {
-                ref var update = ref charactersUpdate.Get1(filterUpdate);
+                ref var update = ref playersInputUpdates.Get1(filterUpdate);
 
                 foreach (var playerFilter in players)
                 {
                     ref var characterMovementComp = ref players.Get1(playerFilter);
-                    if (!characterMovementComp.clientIdSet || characterMovementComp.clientId != update.clientId)
+                    if (!characterMovementComp.ClientIdSet || characterMovementComp.ClientId != update.ClientId)
                     {
                         return;
                     }
 
                     ref var entity = ref players.GetEntity(playerFilter);
-                    entity.Get<PlayerInputUpdate>() = update;
+                    entity.Get<Update>() = update;
                     break;
                 }
             }

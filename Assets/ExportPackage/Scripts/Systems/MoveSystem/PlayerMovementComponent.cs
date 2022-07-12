@@ -4,7 +4,7 @@ using UnityEngine;
 namespace GameLogic
 {
     [Serializable]
-    public struct CharacterMovementComponent
+    public struct PlayerMovementComponent : IPlayerComponent
     {
         public CharacterController characterController;
         
@@ -13,10 +13,12 @@ namespace GameLogic
         public float deceleration;
 
         public float jumpForce;
-        public ushort clientId;
-        
+
         [HideInInspector] public Vector3 currentSpeed;
         [HideInInspector] public float currentGravitySpeed;
-        [HideInInspector] public bool clientIdSet;
+        
+        public ushort ClientId { get; set; }
+        public bool ClientIdSet { get; set; }
+        public GameObject PlayerGameobject => characterController.gameObject;
     }
 }

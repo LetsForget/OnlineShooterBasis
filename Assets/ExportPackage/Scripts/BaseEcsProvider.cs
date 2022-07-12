@@ -1,4 +1,3 @@
-using System;
 using Leopotam.Ecs;
 using UnityEngine;
 using Voody.UniLeo;
@@ -18,7 +17,6 @@ namespace GameLogic
         protected EcsSystems systems;
 
         protected SpawnSystem SpawnSystem { get; set; }
-        protected UpdateReceiveSystem UpdateReceiveSystem { get; set; }
 
         private void Awake()
         {
@@ -64,12 +62,7 @@ namespace GameLogic
 
         protected virtual void AddSystems()
         {
-            systems.Add(new InputSystem())
-                .Add(UpdateReceiveSystem = new UpdateReceiveSystem())
-                .Add(new CharacterObserveSystem())
-                .Add(new CharacterMovementSystem())
-                .Add(SpawnSystem = new SpawnSystem())
-                .Add(new ClientIdSetterSystem());
+            systems.Add(SpawnSystem = new SpawnSystem());
         }
 
         protected virtual void AddDebugSystems()
@@ -80,8 +73,7 @@ namespace GameLogic
         protected virtual void AddOneFrames()
         {
             systems.OneFrame<SpawnComponent>()
-                .OneFrame<DestroyComponent>()
-                .OneFrame<PlayerInputUpdate>();
+                .OneFrame<DestroyComponent>();
         }
     
         protected virtual void AddInjections()

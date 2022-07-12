@@ -7,12 +7,12 @@ namespace GameLogic
     {
         private const float SENSETIVITY = 1000f;
         
-        private readonly EcsWorld _world;
-        private readonly EcsFilter<InputComponent> filter;
+        private readonly EcsWorld world = null;
+        private readonly EcsFilter<InputComponent> filter = null;
 
         public void Init()
         {
-            var entity = _world.NewEntity();
+            var entity = world.NewEntity();
             entity.Get<InputComponent>();
         }
         

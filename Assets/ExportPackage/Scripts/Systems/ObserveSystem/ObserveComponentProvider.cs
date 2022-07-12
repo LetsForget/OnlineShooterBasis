@@ -2,8 +2,5 @@
 
 namespace GameLogic
 {
-    public class ObserveComponentProvider : MonoProvider<CharacterObserveComponent>
-    {
-        
-    }
+    public class ObserveComponentProvider : MonoProvider<CharacterObserveComponent> { }
 }
