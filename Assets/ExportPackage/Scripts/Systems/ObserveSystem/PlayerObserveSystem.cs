@@ -28,7 +28,7 @@ namespace GameLogic
                     xRotation = Mathf.Clamp(xRotation, -90, 90);
 
                     cameraTransform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-                    bodyTransform.Rotate(Vector3.up, lookDir.x * Time.deltaTime);
+                    bodyTransform.Rotate(Vector3.up, lookDir.x);
                 }
             }
         }
