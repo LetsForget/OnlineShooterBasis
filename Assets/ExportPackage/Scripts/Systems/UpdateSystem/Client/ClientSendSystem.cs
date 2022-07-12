@@ -29,7 +29,7 @@ namespace GameLogic
                     
                     ref var playerInputUpdate = ref playerEntity.Get<ServerMovementUpdate>();
                     playerInputUpdate.inputComponent = inputComponent;
-                    playerInputUpdate.bodyRotatiom = observeComp.bodyTransform.eulerAngles;
+                    playerInputUpdate.bodyRotation = observeComp.bodyTransform.eulerAngles;
                     
                     var msg = ServerMovementUpdateMessage.Create(ref playerInputUpdate, client.Id);
                     client.Send(msg);

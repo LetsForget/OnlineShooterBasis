@@ -16,8 +16,16 @@ namespace GameLogic
                 ref var movementComp = ref players.Get1(playerFilter);
                 ref var charController = ref movementComp.characterController;
 
-                ref var movementUpdate = ref players.GetEntity(playerFilter).Get<ServerMovementUpdate>();
+                ref var playerEntity = ref players.GetEntity(playerFilter);
 
+                var hasMoving = playerEntity.Has<ServerMovementUpdate>();
+                ref var movementUpdate = ref playerEntity.Get<ServerMovementUpdate>();
+
+                if (hasMoving)
+                {
+                    charController.transform.eulerAngles = movementUpdate.bodyRotation;
+                }
+                
                 ref var moveDir = ref movementUpdate.inputComponent.moveDirection;
                 ref var jump = ref movementUpdate.inputComponent.spacePressed;
                 
