@@ -7,5 +7,6 @@ namespace GameLogic
     {
         public GameObject localPlayerPrefab;
         public GameObject enemyPlayerPrefab;
+        public GameObject serverPlayerPrefab;
     }
 }

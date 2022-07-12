@@ -22,6 +22,12 @@ namespace GameLogic
             playersList.list.Add(clientId, player);
         }
 
+        public void ServerSpawn(ushort clientId, Vector3 pos)
+        {
+            var player = GameObject.Instantiate(spawnDataConfig.serverPlayerPrefab, pos, Quaternion.identity);
+            playersList.list.Add(clientId, player);
+        }
+        
         public void Destroy(ushort clientId)
         {
             if (playersList.list.TryGetValue(clientId, out var player))
