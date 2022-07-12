@@ -12,6 +12,7 @@ namespace GameLogic
             msg.AddVector2(serverMovementUpdate.inputComponent.lookDirection);
             msg.AddBool(serverMovementUpdate.inputComponent.spacePressed);
 
+            msg.AddVector3(serverMovementUpdate.bodyRotation);
             msg.AddUShort(clientId);
             
             return msg;
@@ -27,7 +28,7 @@ namespace GameLogic
                     lookDirection = msg.GetVector2(),
                     spacePressed = msg.GetBool()
                 },
-
+                bodyRotation = msg.GetVector3(),
                 ClientId = msg.GetUShort()
             };
         }
