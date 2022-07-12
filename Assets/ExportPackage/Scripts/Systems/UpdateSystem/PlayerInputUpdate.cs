@@ -3,12 +3,9 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public struct CharacterMovementUpdate
+    public struct PlayerInputUpdate
     {
         public InputComponent inputComponent;
-        public Vector3 position;
-        public Vector3 rotation;
-        public Vector3 headRotation;
         public ushort clientId;
     }
 }

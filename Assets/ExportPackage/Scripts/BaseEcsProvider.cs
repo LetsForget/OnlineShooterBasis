@@ -81,7 +81,7 @@ namespace GameLogic
         {
             systems.OneFrame<SpawnComponent>()
                 .OneFrame<DestroyComponent>()
-                .OneFrame<CharacterMovementUpdate>();
+                .OneFrame<PlayerInputUpdate>();
         }
     
         protected virtual void AddInjections()

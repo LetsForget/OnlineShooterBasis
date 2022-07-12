@@ -7,7 +7,7 @@ namespace GameLogic
     {
         private const float GRAVITY = 9.8f;
 
-        private readonly EcsFilter<CharacterMovementComponent, CharacterMovementUpdate> characterFilter;
+        private readonly EcsFilter<CharacterMovementComponent> characterFilter;
         
         public void Run()
         {
@@ -16,7 +16,7 @@ namespace GameLogic
                 ref var movementComp = ref characterFilter.Get1(filter);
                 ref var charController = ref movementComp.characterController;
 
-                ref var movementUpdate = ref characterFilter.Get2(filter);
+                ref var movementUpdate = ref characterFilter.GetEntity(filter).Get<PlayerInputUpdate>();
 
                 ref var moveDir = ref movementUpdate.inputComponent.moveDirection;
                 ref var jump = ref movementUpdate.inputComponent.spacePressed;

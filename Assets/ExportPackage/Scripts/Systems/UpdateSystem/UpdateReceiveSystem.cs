@@ -6,7 +6,7 @@ namespace GameLogic
     {
         private readonly EcsWorld _world = null;
         
-        private readonly EcsFilter<CharacterMovementUpdate> charactersUpdate;
+        private readonly EcsFilter<PlayerInputUpdate> charactersUpdate;
         private readonly EcsFilter<CharacterMovementComponent> players;
         
         private PlayersList playersList = null;
@@ -26,15 +26,15 @@ namespace GameLogic
                     }
 
                     ref var entity = ref players.GetEntity(playerFilter);
-                    entity.Get<CharacterMovementUpdate>() = update;
+                    entity.Get<PlayerInputUpdate>() = update;
                     break;
                 }
             }
         }
 
-        public void AddUpdate(CharacterMovementUpdate update)
+        public void AddUpdate(PlayerInputUpdate update)
         {
-            _world.NewEntity().Get<CharacterMovementUpdate>() = update;
+            _world.NewEntity().Get<PlayerInputUpdate>() = update;
         }
     }
 }
