@@ -5,7 +5,7 @@ namespace GameLogic
 {
     public class PlayerObserveSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerObserveComponent> cameras = null;
+        private readonly EcsFilter<PlayerObserveComponent, ClientPlayerComponent> cameras = null;
         private readonly EcsFilter<InputComponent> input = null;
   
         public void Run()
