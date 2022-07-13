@@ -9,6 +9,7 @@ namespace GameLogic
     {
         private readonly EcsWorld _world = null;
         private readonly EcsFilter<PlayerComponent> players = null;
+        
         private Dictionary<ushort, Update> updatesDictionary = new();
 
         public void Run()
@@ -16,7 +17,7 @@ namespace GameLogic
             foreach (var playerFilter in players)
             {
                 ref var playerComponent = ref players.Get1(playerFilter);
-                if (!playerComponent.ClientIdSet || updatesDictionary.TryGetValue(playerComponent.ClientId, out var update))
+                if (!playerComponent.ClientIdSet || !updatesDictionary.TryGetValue(playerComponent.ClientId, out var update))
                 {
                     return;
                 }
@@ -30,6 +31,11 @@ namespace GameLogic
         public void AddUpdate(Update update)
         {
             updatesDictionary[update.ClientId] = update;
+        }
+
+        public void OnDestroyPlayer(ushort clientId)
+        {
+            updatesDictionary.Remove(clientId);
         }
     }
 }
