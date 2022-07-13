@@ -16,6 +16,8 @@ namespace GameLogic
         protected EcsWorld world;
         protected EcsSystems systems;
 
+        public PlayersList PlayersList { get; private set; }
+        
         private void Awake()
         {
             world = new EcsWorld();
@@ -76,7 +78,7 @@ namespace GameLogic
         protected virtual void AddInjections()
         {
             systems.Inject(spawnDataConfig)
-                .Inject(new PlayersList());
+                .Inject(PlayersList = new PlayersList());
         }
     }
 }
