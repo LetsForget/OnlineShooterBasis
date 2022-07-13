@@ -24,11 +24,11 @@ namespace GameLogic
                     ref var cameraTransform = ref observeComponent.cameraTransform;
                     ref var bodyTransform = ref observeComponent.bodyTransform;
             
-                    xRotation -= lookDir.y;
+                    xRotation -= lookDir.y * Time.deltaTime;
                     xRotation = Mathf.Clamp(xRotation, -90, 90);
 
                     cameraTransform.localRotation = Quaternion.Euler(xRotation, 0, 0);
-                    bodyTransform.Rotate(Vector3.up, lookDir.x);
+                    bodyTransform.Rotate(Vector3.up, lookDir.x * Time.deltaTime);
                 }
             }
         }

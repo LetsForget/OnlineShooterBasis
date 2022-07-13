@@ -56,8 +56,8 @@ namespace GameLogic
 
         private Vector2 CalculateLookDirection() => new()
         {
-            x = Input.GetAxis("Mouse X") * SENSETIVITY * Time.deltaTime,
-            y = Input.GetAxis("Mouse Y") * SENSETIVITY * Time.deltaTime
+            x = Input.GetAxis("Mouse X") * SENSETIVITY,
+            y = Input.GetAxis("Mouse Y") * SENSETIVITY
         };
     }
 }
