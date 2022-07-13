@@ -1,4 +1,5 @@
-﻿using Leopotam.Ecs;
+﻿using System.Collections.Generic;
+using Leopotam.Ecs;
 
 namespace GameLogic
 {
@@ -7,36 +8,28 @@ namespace GameLogic
         where PlayerComponent : struct, IPlayerComponent
     {
         private readonly EcsWorld _world = null;
-
-        private readonly EcsFilter<Update> updates;
-        private readonly EcsFilter<PlayerComponent> players;
-
-        private PlayersList playersList = null;
+        private readonly EcsFilter<PlayerComponent> players = null;
+        private Dictionary<ushort, Update> updatesDictionary = new();
 
         public void Run()
         {
-            foreach (var filterUpdate in updates)
+            foreach (var playerFilter in players)
             {
-                ref var update = ref updates.Get1(filterUpdate);
-
-                foreach (var playerFilter in players)
+                ref var playerComponent = ref players.Get1(playerFilter);
+                if (!playerComponent.ClientIdSet || updatesDictionary.TryGetValue(playerComponent.ClientId, out var update))
                 {
-                    ref var characterMovementComp = ref players.Get1(playerFilter);
-                    if (!characterMovementComp.ClientIdSet || characterMovementComp.ClientId != update.ClientId)
-                    {
-                        return;
-                    }
-
-                    ref var entity = ref players.GetEntity(playerFilter);
-                    entity.Get<Update>() = update;
-                    break;
+                    return;
                 }
+
+                ref var entity = ref players.GetEntity(playerFilter);
+                entity.Get<Update>() = update;
+                break;
             }
         }
 
         public void AddUpdate(Update update)
         {
-            _world.NewEntity().Get<Update>() = update;
+            updatesDictionary[update.ClientId] = update;
         }
     }
 }
