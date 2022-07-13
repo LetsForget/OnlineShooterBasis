@@ -3,16 +3,11 @@ using UnityEngine;
 
 namespace GameLogic
 {
-    public class PlayerObserveSystem : IEcsInitSystem, IEcsRunSystem
+    public class PlayerObserveSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerObserveComponent> cameras = null;
         private readonly EcsFilter<InputComponent> input = null;
-        
-        public void Init()
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
+  
         public void Run()
         {
             foreach (var inputFilter in input)
