@@ -24,7 +24,6 @@ namespace GameLogic
 
                 ref var entity = ref players.GetEntity(playerFilter);
                 entity.Get<Update>() = update;
-                break;
             }
         }
 
